@@ -9,13 +9,17 @@
 import UIKit
 import AVFoundation
 import MediaPlayer
+import StoreKit
 
 class ViewController: UIViewController {
     
     var audioPlayer: AVAudioPlayer?
     
+    let appleMusicPlayer = MPMusicPlayerController.applicationQueuePlayer
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        requestAppleMusicPermission()
         configureAudio()
         setupRemoteTransportControls()
         setupNowPlaying()
@@ -25,6 +29,9 @@ class ViewController: UIViewController {
     // MARK: IBActions
     @IBAction func playButtonPressed(_ sender: UIButton) {
         playAudio()
+    }
+    @IBAction func playAppleMusicButtonPressed(_ sender: UIButton) {
+        playAppleMusic()
     }
     
     func playAudio() {
@@ -82,6 +89,30 @@ class ViewController: UIViewController {
         nowPlayingInfo[MPNowPlayingInfoPropertyIsLiveStream] = true
         // Set the metadata
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
+    
+    // MARK: Apple Music Player
+    
+    func playAppleMusic() {
+        // Set queue to "Follow God" by Kanye West
+        appleMusicPlayer.setQueue(with: ["1484937103"])
+        appleMusicPlayer.prepareToPlay { error in
+            if error != nil {
+                return
+            }
+            self.appleMusicPlayer.play()
+        }
+    }
+    
+    func requestAppleMusicPermission() {
+        SKCloudServiceController.requestAuthorization { (status:SKCloudServiceAuthorizationStatus) in
+            if status == .authorized {
+                
+            } else {
+                
+            }
+            
+        }
     }
 
 }

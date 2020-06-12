@@ -15,18 +15,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7n-8G-fiE">
-                                <rect key="frame" x="192" y="433" width="30" height="30"/>
-                                <state key="normal" title="Play"/>
-                                <connections>
-                                    <action selector="playButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="74O-Ux-zVf"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="z4p-tS-JtJ">
+                                <rect key="frame" x="149" y="414" width="116" height="68"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7n-8G-fiE">
+                                        <rect key="frame" x="0.0" y="0.0" width="116" height="30"/>
+                                        <state key="normal" title="Play audio file"/>
+                                        <connections>
+                                            <action selector="playButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="74O-Ux-zVf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muz-EP-Q48">
+                                        <rect key="frame" x="0.0" y="38" width="116" height="30"/>
+                                        <state key="normal" title="Play Song"/>
+                                        <connections>
+                                            <action selector="playAppleMusicButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ekX-Js-vdR"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="o7n-8G-fiE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hYP-4s-hpP"/>
-                            <constraint firstItem="o7n-8G-fiE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vYS-6i-CKX"/>
+                            <constraint firstItem="z4p-tS-JtJ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fL0-ZA-UTl"/>
+                            <constraint firstItem="z4p-tS-JtJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qbx-k4-kjz"/>
+                            <constraint firstItem="z4p-tS-JtJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="149" id="rIP-Ud-Vjc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
