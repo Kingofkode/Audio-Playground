@@ -136,7 +136,7 @@ class ViewController: UIViewController {
 extension ViewController: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         do {
-            
+            try AVAudioSession.sharedInstance().setActive(false)
         } catch {
             
         }
