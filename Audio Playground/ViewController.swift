@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import MediaPlayer
 
 class ViewController: UIViewController {
     
@@ -16,6 +17,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAudio()
+        setupRemoteTransportControls()
         // Do any additional setup after loading the view.
         
     }
@@ -32,6 +34,7 @@ class ViewController: UIViewController {
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
             audioPlayer?.play()
+            setupNowPlaying()
         } catch {
             // Couldn't load file :(
         }
@@ -48,5 +51,47 @@ class ViewController: UIViewController {
         }
     }
     
+    func setupRemoteTransportControls() {
+        // Get the shared MPRemoteCommandCenter
+        let commandCenter = MPRemoteCommandCenter.shared()
+        
+        // Add handler for Play Command
+        commandCenter.playCommand.addTarget { [unowned self] event in
+            if self.audioPlayer?.rate == 0.0 {
+                self.audioPlayer?.play()
+                return .success
+            }
+            return .commandFailed
+        }
+        
+        // Add handler for Pause Command
+        commandCenter.pauseCommand.addTarget { [unowned self] event in
+            if self.audioPlayer?.rate == 1.0 {
+                self.audioPlayer?.pause()
+                return .success
+            }
+            return .commandFailed
+        }
+        
+    }
+    
+    func setupNowPlaying() {
+        // Define Now Playing Info
+        var nowPlayingInfo = [String : Any]()
+        nowPlayingInfo[MPMediaItemPropertyTitle] = "My Memo"
+
+        if let image = UIImage(named: "lockscreen") {
+            nowPlayingInfo[MPMediaItemPropertyArtwork] =
+                MPMediaItemArtwork(boundsSize: image.size) { size in
+                    return image
+            }
+        }
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = audioPlayer?.currentTime.magnitude
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = audioPlayer?.duration
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = audioPlayer?.rate.magnitude
+
+        // Set the metadata
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
 
 }
