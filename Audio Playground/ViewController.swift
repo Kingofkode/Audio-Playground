@@ -55,23 +55,22 @@ class ViewController: UIViewController {
         // Get the shared MPRemoteCommandCenter
         let commandCenter = MPRemoteCommandCenter.shared()
         
-        // Add handler for Play Command
-        commandCenter.playCommand.addTarget { [unowned self] event in
-            if !(self.audioPlayer?.isPlaying ?? true ) {
-                self.audioPlayer?.play()
-                return .success
-            }
-            return .commandFailed
-        }
-        
-        // Add handler for Pause Command
-        commandCenter.pauseCommand.addTarget { [unowned self] event in
+        commandCenter.stopCommand.addTarget { [unowned self] event in
             if self.audioPlayer?.isPlaying ?? false {
                 self.audioPlayer?.pause()
                 return .success
             }
             return .commandFailed
         }
+        
+        commandCenter.playCommand.addTarget { [unowned self] event in
+            if !(self.audioPlayer?.isPlaying ?? true) {
+                self.audioPlayer?.play()
+                return .success
+            }
+            return .commandFailed
+        }
+        
         
     }
     
@@ -86,10 +85,8 @@ class ViewController: UIViewController {
                     return image
             }
         }
-        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = audioPlayer?.currentTime.magnitude
-        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = audioPlayer?.duration
-        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = audioPlayer?.rate.magnitude
-
+        
+        nowPlayingInfo[MPNowPlayingInfoPropertyIsLiveStream] = true
         // Set the metadata
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
