@@ -15,6 +15,7 @@
 		DAB7C68E2493EB280070624A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAB7C68C2493EB280070624A /* LaunchScreen.storyboard */; };
 		DAB7C6992493EB280070624A /* Audio_PlaygroundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB7C6982493EB280070624A /* Audio_PlaygroundTests.swift */; };
 		DAB7C6A42493EB280070624A /* Audio_PlaygroundUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB7C6A32493EB280070624A /* Audio_PlaygroundUITests.swift */; };
+		DAB7C6B22493EF570070624A /* example.m4a in Resources */ = {isa = PBXBuildFile; fileRef = DAB7C6B12493EE370070624A /* example.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		DAB7C69F2493EB280070624A /* Audio PlaygroundUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Audio PlaygroundUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAB7C6A32493EB280070624A /* Audio_PlaygroundUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio_PlaygroundUITests.swift; sourceTree = "<group>"; };
 		DAB7C6A52493EB280070624A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAB7C6B12493EE370070624A /* example.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = example.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				DAB7C6852493EB260070624A /* ViewController.swift */,
 				DAB7C6872493EB260070624A /* Main.storyboard */,
 				DAB7C68A2493EB280070624A /* Assets.xcassets */,
+				DAB7C6B12493EE370070624A /* example.m4a */,
 				DAB7C68C2493EB280070624A /* LaunchScreen.storyboard */,
 				DAB7C68F2493EB280070624A /* Info.plist */,
 			);
@@ -232,6 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAB7C6B22493EF570070624A /* example.m4a in Resources */,
 				DAB7C68E2493EB280070624A /* LaunchScreen.storyboard in Resources */,
 				DAB7C68B2493EB280070624A /* Assets.xcassets in Resources */,
 				DAB7C6892493EB260070624A /* Main.storyboard in Resources */,
@@ -437,6 +441,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SN762KB9H6;
 				INFOPLIST_FILE = "Audio Playground/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,6 +460,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SN762KB9H6;
 				INFOPLIST_FILE = "Audio Playground/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
