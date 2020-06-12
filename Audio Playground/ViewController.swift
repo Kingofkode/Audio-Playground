@@ -22,19 +22,21 @@ class ViewController: UIViewController {
         requestAppleMusicPermission()
         configureAudio()
         setupRemoteTransportControls()
-        setupNowPlaying()
+        setupNowPlayingInfo()
         // Do any additional setup after loading the view.
         
     }
     // MARK: IBActions
-    @IBAction func playButtonPressed(_ sender: UIButton) {
-        playAudio()
+    @IBAction func AVAudioButtonPressed(_ sender: UIButton) {
+        // Look in control center. This is what I want it to look like
+        playAVAudio()
     }
-    @IBAction func playAppleMusicButtonPressed(_ sender: UIButton) {
+    @IBAction func MPMusicPlayerButtonPressed(_ sender: UIButton) {
+        // My nowPlayingInfo is ignored!
         playAppleMusic()
     }
     
-    func playAudio() {
+    func playAVAudio() {
         
         let path = Bundle.main.path(forResource: "example.m4a", ofType: nil)!
         let url = URL(fileURLWithPath: path)
@@ -43,16 +45,13 @@ class ViewController: UIViewController {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
             audioPlayer?.play()
         } catch {
-            // Couldn't load file :(
         }
     }
     
     func configureAudio() {
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
-            print("Playback OK")
             try AVAudioSession.sharedInstance().setActive(true)
-            print("Session is Active")
         } catch {
             print(error)
         }
@@ -74,10 +73,10 @@ class ViewController: UIViewController {
         
     }
     
-    func setupNowPlaying() {
+    func setupNowPlayingInfo() {
         // Define Now Playing Info
         var nowPlayingInfo = [String : Any]()
-        nowPlayingInfo[MPMediaItemPropertyTitle] = "My Memo"
+        nowPlayingInfo[MPMediaItemPropertyTitle] = "My Custom Title"
 
         if let image = UIImage(named: "lockscreen") {
             nowPlayingInfo[MPMediaItemPropertyArtwork] =
@@ -101,6 +100,7 @@ class ViewController: UIViewController {
                 return
             }
             self.appleMusicPlayer.play()
+            self.setupNowPlayingInfo() // FIXME: Ignored!
         }
     }
     

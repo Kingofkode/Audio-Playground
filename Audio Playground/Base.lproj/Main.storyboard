@@ -16,20 +16,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="z4p-tS-JtJ">
-                                <rect key="frame" x="149" y="414" width="116" height="68"/>
+                                <rect key="frame" x="149" y="416" width="116" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7n-8G-fiE">
-                                        <rect key="frame" x="0.0" y="0.0" width="116" height="30"/>
-                                        <state key="normal" title="Play audio file"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="116" height="28"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <state key="normal" title="AVAudioPlayer"/>
                                         <connections>
-                                            <action selector="playButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="74O-Ux-zVf"/>
+                                            <action selector="AVAudioButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="74O-Ux-zVf"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muz-EP-Q48">
-                                        <rect key="frame" x="0.0" y="38" width="116" height="30"/>
-                                        <state key="normal" title="Play Song"/>
+                                        <rect key="frame" x="0.0" y="36" width="116" height="28"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <state key="normal" title="MPMusicPlayer"/>
                                         <connections>
-                                            <action selector="playAppleMusicButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ekX-Js-vdR"/>
+                                            <action selector="MPMusicPlayerButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ekX-Js-vdR"/>
                                         </connections>
                                     </button>
                                 </subviews>
