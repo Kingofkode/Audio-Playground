@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         configureAudio()
         setupRemoteTransportControls()
+        setupNowPlaying()
         // Do any additional setup after loading the view.
         
     }
@@ -34,7 +35,6 @@ class ViewController: UIViewController {
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
             audioPlayer?.play()
-            setupNowPlaying()
         } catch {
             // Couldn't load file :(
         }
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         
         // Add handler for Play Command
         commandCenter.playCommand.addTarget { [unowned self] event in
-            if self.audioPlayer?.rate == 0.0 {
+            if !(self.audioPlayer?.isPlaying ?? true ) {
                 self.audioPlayer?.play()
                 return .success
             }
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
         
         // Add handler for Pause Command
         commandCenter.pauseCommand.addTarget { [unowned self] event in
-            if self.audioPlayer?.rate == 1.0 {
+            if self.audioPlayer?.isPlaying ?? false {
                 self.audioPlayer?.pause()
                 return .success
             }
