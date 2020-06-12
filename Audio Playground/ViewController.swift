@@ -56,21 +56,14 @@ class ViewController: UIViewController {
         let commandCenter = MPRemoteCommandCenter.shared()
         
         commandCenter.stopCommand.addTarget { [unowned self] event in
-            if self.audioPlayer?.isPlaying ?? false {
-                self.audioPlayer?.pause()
-                return .success
-            }
-            return .commandFailed
+            self.audioPlayer?.stop()
+            return .success
         }
         
         commandCenter.playCommand.addTarget { [unowned self] event in
-            if !(self.audioPlayer?.isPlaying ?? true) {
-                self.audioPlayer?.play()
-                return .success
-            }
-            return .commandFailed
+            self.audioPlayer?.play()
+            return .success
         }
-        
         
     }
     
