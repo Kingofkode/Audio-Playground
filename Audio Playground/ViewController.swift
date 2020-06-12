@@ -11,6 +11,8 @@ import AVFoundation
 import MediaPlayer
 import StoreKit
 
+// Hi Apple Technical Support!
+
 class ViewController: UIViewController {
     
     var audioPlayer: AVAudioPlayer?
@@ -74,7 +76,7 @@ class ViewController: UIViewController {
     }
     
     func setupNowPlayingInfo() {
-        // Define Now Playing Info
+        // This is what I want to appear in control center
         var nowPlayingInfo = [String : Any]()
         nowPlayingInfo[MPMediaItemPropertyTitle] = "My Custom Title"
 
@@ -100,7 +102,7 @@ class ViewController: UIViewController {
                 return
             }
             self.appleMusicPlayer.play()
-            self.setupNowPlayingInfo() // FIXME: Ignored!
+            self.setupNowPlayingInfo() // FIXME: Now playing info ignored!
         }
     }
     
