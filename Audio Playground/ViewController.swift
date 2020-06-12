@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureAudio()
         // Do any additional setup after loading the view.
         
     }
@@ -33,6 +34,17 @@ class ViewController: UIViewController {
             audioPlayer?.play()
         } catch {
             // Couldn't load file :(
+        }
+    }
+    
+    func configureAudio() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+            print("Playback OK")
+            try AVAudioSession.sharedInstance().setActive(true)
+            print("Session is Active")
+        } catch {
+            print(error)
         }
     }
     
