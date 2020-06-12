@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         requestAppleMusicPermission()
+        registerForAppleMusicPlayerNotifications()
         configureAudio()
         setupRemoteTransportControls()
         setupNowPlaying()
@@ -41,6 +42,8 @@ class ViewController: UIViewController {
         
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.delegate = self
+            try AVAudioSession.sharedInstance().setActive(true)
             audioPlayer?.play()
         } catch {
             // Couldn't load file :(
@@ -49,7 +52,7 @@ class ViewController: UIViewController {
     
     func configureAudio() {
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
             print("Playback OK")
             try AVAudioSession.sharedInstance().setActive(true)
             print("Session is Active")
@@ -94,8 +97,11 @@ class ViewController: UIViewController {
     // MARK: Apple Music Player
     
     func playAppleMusic() {
-        // Set queue to "Follow God" by Kanye West
-        appleMusicPlayer.setQueue(with: ["1484937103"])
+        // Set queue to:
+        // 1. Follow God by Kanye West
+        // 2. Lose it by Flume
+        // 3. Nonstop by Drake
+        appleMusicPlayer.setQueue(with: ["1484937103", "1105939616", "1418213266"])
         appleMusicPlayer.prepareToPlay { error in
             if error != nil {
                 return
@@ -114,5 +120,25 @@ class ViewController: UIViewController {
             
         }
     }
+    
+    func registerForAppleMusicPlayerNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingItemDidChange), name: NSNotification.Name.MPMusicPlayerControllerNowPlayingItemDidChange, object: appleMusicPlayer)
+               appleMusicPlayer.beginGeneratingPlaybackNotifications()
+    }
+    
+    @objc func nowPlayingItemDidChange() {
+        // Play chime at the start of each song
+        self.playAudio()
+    }
 
+}
+
+extension ViewController: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        do {
+            
+        } catch {
+            
+        }
+    }
 }
